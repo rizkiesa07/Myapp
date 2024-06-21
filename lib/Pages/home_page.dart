@@ -23,6 +23,7 @@ class _HomePageState extends State<HomePage> {
 
   Widget build(BuildContext context) {
     return SingleChildScrollView(
+      
       child: SafeArea(
           child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -41,101 +42,111 @@ class _HomePageState extends State<HomePage> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Row(
-                          children: [
-                            Container(
-                                padding: EdgeInsets.all(3),
-                                decoration: BoxDecoration(
-                                    color: Colors.white,
-                                    borderRadius: BorderRadius.circular(8)),
-                                child: Icon(
-                                  Icons.download,
-                                  color: Colors.greenAccent[400],
-                                )),
-                            SizedBox(
-                              width: 10,
-                            ),
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text('Income',
-                                    style: GoogleFonts.montserrat(
-                                        fontSize: 12, color: Colors.white)),
-                                SizedBox(
-                                  width: 10,
-                                ),
-                                FutureBuilder(
-                                  future: AppDb().sumIncome(),
-                                  builder: (context, snapshot) {
-                                    if (snapshot.connectionState ==
-                                        ConnectionState.waiting) {
-                                      return CircularProgressIndicator(); // Show a loading indicator
-                                    } else if (snapshot.hasError) {
-                                      return Text(
-                                          'Error: ${snapshot.error}'); // Display an error message
-                                    } else if (snapshot.hasData) {
-                                      int total = snapshot.data as int;
-                                      return Text("Rp. $total",
-                                          style: GoogleFonts.montserrat(
-                                              color: Colors.white,
-                                              fontSize: 14));
-                                    } else {
-                                      return Text(
-                                          "No data"); // Handle the case where there's no data
-                                    }
-                                  },
-                                ),
-                              ],
-                            ),
-                          ],
+                        Expanded(
+                          
+                          child: Row(
+                            children: [
+                              Container(
+                                  padding: EdgeInsets.all(3),
+                                  decoration: BoxDecoration(
+                                      color: Colors.white,
+                                      borderRadius: BorderRadius.circular(8)),
+                                  child: Icon(
+                                    Icons.download,
+                                    color: Colors.greenAccent[400],
+                                  )),
+                              SizedBox(
+                                width: 10,
+                              ),
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text('Income',
+                                      style: GoogleFonts.montserrat(
+                                          fontSize: 12, color: Colors.white)),
+                                  SizedBox(
+                                    width: 10,
+                                  ),
+                                  FutureBuilder(
+                                    future: AppDb().sumIncome(),
+                                    
+                                    builder: (context, snapshot) {
+                                      if (snapshot.connectionState ==
+                                          ConnectionState.waiting) {
+                                        return CircularProgressIndicator(); // Show a loading indicator
+                                      } else if (snapshot.hasError) {
+                                        return Expanded(child: SingleChildScrollView(scrollDirection:Axis.horizontal ,child: Text(
+                                            'Error: ${snapshot.error}' ,style: GoogleFonts.montserrat(
+                                                color: Colors.white,
+                                                fontSize: 14) )));  // Display an error message
+                                      } else if (snapshot.hasData) {
+                                        int total = snapshot.data as int? ?? 0;
+                                        return Text("Rp. $total",style: GoogleFonts.montserrat(
+                                                color: Colors.white,
+                                                fontSize: 14),
+                                            );
+                                      } else {
+                                        return Text(
+                                            "Rp. 0"); // Handle the case where there's no data
+                                      }
+                                    },
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
                         ),
-                        Row(
-                          children: [
-                            Container(
-                                padding: EdgeInsets.all(3),
-                                decoration: BoxDecoration(
-                                    color: Colors.white,
-                                    borderRadius: BorderRadius.circular(8)),
-                                child: Icon(
-                                  Icons.upload,
-                                  color: Colors.redAccent[400],
-                                )),
-                            SizedBox(
-                              width: 10,
-                            ),
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text('Expense',
-                                    style: GoogleFonts.montserrat(
-                                        fontSize: 12, color: Colors.white)),
-                                SizedBox(
-                                  width: 10,
-                                ),
-                                FutureBuilder(
-                                  future: AppDb().sumExpense(),
-                                  builder: (context, snapshot) {
-                                    if (snapshot.connectionState ==
-                                        ConnectionState.waiting) {
-                                      return CircularProgressIndicator(); // Show a loading indicator
-                                    } else if (snapshot.hasError) {
-                                      return Text(
-                                          'Error: ${snapshot.error}'); // Display an error message
-                                    } else if (snapshot.hasData) {
-                                      int total = snapshot.data as int;
-                                      return Text("Rp. $total",
-                                          style: GoogleFonts.montserrat(
-                                              color: Colors.white,
-                                              fontSize: 14));
-                                    } else {
-                                      return Text(
-                                          "No data"); // Handle the case where there's no data
-                                    }
-                                  },
-                                ),
-                              ],
-                            ),
-                          ],
+                        Expanded(
+                          
+                          child: Row(
+                            children: [
+                              Container(
+                                  padding: EdgeInsets.all(3),
+                                  decoration: BoxDecoration(
+                                      color: Colors.white,
+                                      borderRadius: BorderRadius.circular(8)),
+                                  child: Icon(
+                                    Icons.upload,
+                                    color: Colors.redAccent[400],
+                                  )),
+                              SizedBox(
+                                width: 10,
+                              ),
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text('Expense',
+                                      style: GoogleFonts.montserrat(
+                                          fontSize: 12, color: Colors.white)),
+                                  SizedBox(
+                                    width: 10,
+                                  ),
+                                  FutureBuilder(
+                                    future: AppDb().sumExpense(),
+                                    builder: (context, snapshot) {
+                                      if (snapshot.connectionState ==
+                                          ConnectionState.waiting) {
+                                        return CircularProgressIndicator(); // Show a loading indicator
+                                      } else if (snapshot.hasError) {
+                                        return Text(
+                                            'Error: ${snapshot.error}'); // Display an error message
+                                      } else if (snapshot.hasData) {
+                                        int total = snapshot.data as int? ?? 0;
+
+                                        return Text("Rp. $total",
+                                            style: GoogleFonts.montserrat(
+                                                color: Colors.white,
+                                                fontSize: 14));
+                                      } else {
+                                        return Text(
+                                            "No data"); // Handle the case where there's no data
+                                      }
+                                    },
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
                         ),
                       ],
                     )

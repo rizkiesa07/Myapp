@@ -97,7 +97,7 @@ class _MainPageState extends State<MainPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return Scaffold( 
         floatingActionButton: Visibility(
           visible: (currenIndex == 0) ? true : false,
           child: FloatingActionButton(
