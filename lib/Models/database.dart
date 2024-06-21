@@ -6,7 +6,9 @@ import 'package:myapp/Models/transaction_with_category.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:path/path.dart' as p;
 import 'package:sqlite3/sqlite3.dart';
+
 import 'package:sqlite3_flutter_libs/sqlite3_flutter_libs.dart';
+
 
 part 'database.g.dart';
 
@@ -68,29 +70,47 @@ class AppDb extends _$AppDb {
   Future deleteTrabsactionRepo(int id) async {
     return (delete(transactions)..where((t) => t.id.equals(id))).go();
   }
-
-
 Future<int> sumIncome() async {
-     try {
-       final sumQuery = await customSelect(
-           'SELECT SUM(a.amount) as total FROM transactions AS a INNER JOIN categories AS b ON a.category_id = b.id WHERE b.type = 1');
-       return sumQuery.map((row) => row.read<int>('total')).getSingle();
-     } catch (e) {
-       print('Error calculating sumIncome: $e');
-       // Handle the error appropriately, e.g., return 0 or show an error message
-       return 0; 
-     }
-   }
+  try {
+    final sumQuery = await customSelect(
+        'SELECT SUM(a.amount) as total FROM transactions AS a INNER JOIN categories AS b ON a.category_id = b.id WHERE b.type = 1');
 
+    // Get the result as a list
+    final results = await sumQuery.get(); 
+
+    // Check if the result list is empty
+    if (results.isEmpty) {
+      return 0; // Return 0 if no data
+    } else {
+      // Extract the 'total' value from the first row
+      return results.first.read<int>('total'); 
+    }
+
+  } catch (e) {
+    print('Error calculating sumIncome: $e');
+    return 0; 
+  }
+}
 
 
   Future<int> sumExpense() async {
   try {
     final sumQuery = await customSelect(
         'SELECT SUM(a.amount) as total FROM transactions AS a INNER JOIN categories AS b ON a.category_id = b.id WHERE b.type = 2');
-    return sumQuery.map((row) => row.read<int>('total')).getSingle(); // Return 0 if no results
+
+    // Get the result as a list
+    final results = await sumQuery.get(); 
+
+    // Check if the result list is empty
+    if (results.isEmpty) {
+      return 0; // Return 0 if no data
+    } else {
+      // Extract the 'total' value from the first row
+      return results.first.read<int>('total'); 
+    }
+
   } catch (e) {
-    print('Error calculating sumExpense: $e');
+    print('Error calculating sumIncome: $e');
     return 0; 
   }
 }

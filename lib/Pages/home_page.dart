@@ -67,30 +67,39 @@ class _HomePageState extends State<HomePage> {
                                   SizedBox(
                                     width: 10,
                                   ),
-                                  FutureBuilder(
-                                    future: AppDb().sumIncome(),
-                                    
-                                    builder: (context, snapshot) {
-                                      if (snapshot.connectionState ==
-                                          ConnectionState.waiting) {
-                                        return CircularProgressIndicator(); // Show a loading indicator
-                                      } else if (snapshot.hasError) {
-                                        return Expanded(child: SingleChildScrollView(scrollDirection:Axis.horizontal ,child: Text(
-                                            'Error: ${snapshot.error}' ,style: GoogleFonts.montserrat(
-                                                color: Colors.white,
-                                                fontSize: 14) )));  // Display an error message
-                                      } else if (snapshot.hasData) {
-                                        int total = snapshot.data as int? ?? 0;
-                                        return Text("Rp. $total",style: GoogleFonts.montserrat(
-                                                color: Colors.white,
-                                                fontSize: 14),
-                                            );
-                                      } else {
-                                        return Text(
-                                            "Rp. 0"); // Handle the case where there's no data
-                                      }
-                                    },
-                                  ),
+                                  
+FutureBuilder(
+  future: AppDb().sumIncome(),
+  builder: (context, snapshot) {
+    if (snapshot.connectionState == ConnectionState.waiting) {
+      return CircularProgressIndicator(); 
+    } else if (snapshot.hasError) {
+      return Expanded(
+        child: SingleChildScrollView(
+          scrollDirection: Axis.horizontal,
+          child: Text(
+            'Error: ${snapshot.error}',
+            style: GoogleFonts.montserrat(
+              color: Colors.white,
+              fontSize: 14,
+            ),
+          ),
+        ),
+      ); 
+    } else {
+      // Handle both cases: data exists and no data
+      int total = snapshot.data as int? ?? 0; 
+      return Text(
+        "Rp. $total",
+        style: GoogleFonts.montserrat(
+          color: Colors.white,
+          fontSize: 14,
+        ),
+      );
+    }
+  },
+),
+
                                 ],
                               ),
                             ],
@@ -124,24 +133,33 @@ class _HomePageState extends State<HomePage> {
                                   FutureBuilder(
                                     future: AppDb().sumExpense(),
                                     builder: (context, snapshot) {
-                                      if (snapshot.connectionState ==
-                                          ConnectionState.waiting) {
-                                        return CircularProgressIndicator(); // Show a loading indicator
-                                      } else if (snapshot.hasError) {
-                                        return Text(
-                                            'Error: ${snapshot.error}'); // Display an error message
-                                      } else if (snapshot.hasData) {
-                                        int total = snapshot.data as int? ?? 0;
-
-                                        return Text("Rp. $total",
-                                            style: GoogleFonts.montserrat(
-                                                color: Colors.white,
-                                                fontSize: 14));
-                                      } else {
-                                        return Text(
-                                            "No data"); // Handle the case where there's no data
-                                      }
-                                    },
+    if (snapshot.connectionState == ConnectionState.waiting) {
+      return CircularProgressIndicator(); 
+    } else if (snapshot.hasError) {
+      return Expanded(
+        child: SingleChildScrollView(
+          scrollDirection: Axis.horizontal,
+          child: Text(
+            'Error: ${snapshot.error}',
+            style: GoogleFonts.montserrat(
+              color: Colors.white,
+              fontSize: 14,
+            ),
+          ),
+        ),
+      ); 
+    } else {
+      // Handle both cases: data exists and no data
+      int total = snapshot.data as int? ?? 0; 
+      return Text(
+        "Rp. $total",
+        style: GoogleFonts.montserrat(
+          color: Colors.white,
+          fontSize: 14,
+        ),
+      );
+    }
+  },
                                   ),
                                 ],
                               ),
