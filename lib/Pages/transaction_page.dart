@@ -121,41 +121,50 @@ class _TransactionPageState extends State<TransactionPage> {
             SizedBox(
               height: 5,
             ),
-            FutureBuilder<List<Category>>(
-                future: getAllCategory(type),
-                builder: (context, snapshot) {
-                  if (snapshot.connectionState == ConnectionState.waiting) {
-                    return CircularProgressIndicator();
-                  } else {
-                    if (snapshot.hasData) {
-                      return Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 16),
-                        child: DropdownButton<Category>(
-                          isExpanded: true,
-                          value: (selectedCategory == null)
-                              ? snapshot.data!.first
-                              : selectedCategory,
-                          icon: const Icon(Icons.arrow_downward),
-                          elevation: 16,
-                          onChanged: (Category? newValue) {
-                            print(newValue!.name);
-                            setState(() {
-                              selectedCategory = newValue;
-                            });
-                          },
-                          items: snapshot.data!.map((Category item) {
-                            return DropdownMenuItem<Category>(
-                              value: item,
-                              child: Text(item.name),
-                            );
-                          }).toList(),
-                        ),
-                      );
-                    } else {
-                      return Text("Belum ada kategory");
-                    }
-                  }
-                }),
+            
+FutureBuilder<List<Category>>(
+  future: getAllCategory(type),
+  builder: (context, snapshot) {
+    if (
+snapshot.connectionState == ConnectionState.waiting) {
+      return CircularProgressIndicator();
+    } else {
+      if (snapshot.hasData && snapshot.data!.isNotEmpty) {
+        return Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16),
+          child: DropdownButton
+<Category>(
+            isExpanded: true,
+            value: (selectedCategory == null)
+                ? snapshot.data!.first
+                : selectedCategory,
+            icon: const Icon(Icons.arrow_downward),
+            elevation: 16,
+            onChanged: (Category? newValue) {
+              print(newValue!.name);
+              setState(() {
+                selectedCategory = newValue;
+              });
+            },
+            items: snapshot.data!.map((Category item) {
+              return DropdownMenuItem<Category>(
+                value: item,
+                child: Text(item.name),
+              );
+            }).toList(),
+          ),
+        );
+      } else {
+        
+        return Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Text("Belum ada kategory"),
+        );
+      }
+    }
+  },
+),
+
             SizedBox(
               height: 10,
             ),
