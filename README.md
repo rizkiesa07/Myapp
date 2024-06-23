@@ -44,5 +44,7 @@ siAbank adalah aplikasi android yang dirancang untuk membantu pengguna mengelola
     &nbsp;&nbsp;
     <img src="./docs/img/edit_kategori.png" alt="kategori_page" width="250">
     &nbsp;&nbsp;
-    <img src="./docs/img/add_kategori.png" alt="add_kategori" width="250">
+    <img src="./docs/img/add_income.png" alt="add_income" width="250">
+    &nbsp;&nbsp;
+    <img src="./docs/img/outcome.png" alt="add_outcome" width="250">
 </p>
