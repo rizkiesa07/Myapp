@@ -4,10 +4,10 @@ import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
-import 'package:myapp/Models/database.dart';
-import 'package:myapp/Pages/category_page.dart';
-import 'package:myapp/Pages/home_page.dart';
-import 'package:myapp/Pages/transaction_page.dart';
+import 'package:siAbank/Models/database.dart';
+import 'package:siAbank/Pages/category_page.dart';
+import 'package:siAbank/Pages/home_page.dart';
+import 'package:siAbank/Pages/transaction_page.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({Key? key}) : super(key: key);

@@ -1,5 +1,5 @@
 //import 'dart:nativewrappers/_internal/vm/lib/internal_patch.dart';
-import 'package:myapp/Pages/main_page.dart';
+import 'package:siAbank/Pages/main_page.dart';
 
 import 'package:flutter/material.dart';
 

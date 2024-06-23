@@ -1,7 +1,7 @@
-import 'package:myapp/Models/database.dart';
+import 'package:siAbank/Models/database.dart';
 import 'package:path/path.dart';
-import 'package:myapp/Pages/transaction_page.dart';
-import 'package:myapp/Models/transaction_with_category.dart';
+import 'package:siAbank/Pages/transaction_page.dart';
+import 'package:siAbank/Models/transaction_with_category.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 

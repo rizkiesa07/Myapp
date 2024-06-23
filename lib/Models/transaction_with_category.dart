@@ -1,4 +1,4 @@
-import 'package:myapp/Models/database.dart';
+import 'package:siAbank/Models/database.dart';
 
 class TransactionWithCategory {
   final Transaction transaction;

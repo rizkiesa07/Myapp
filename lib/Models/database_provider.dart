@@ -1,6 +1,6 @@
 // File: database_provider.dart
 
-import 'package:myapp/Models/database.dart'; // Import your Drift database class
+import 'package:siAbank/Models/database.dart'; // Import your Drift database class
 
 class DatabaseProvider {
   static final DatabaseProvider _instance = DatabaseProvider._internal();
